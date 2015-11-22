@@ -10,6 +10,8 @@ if (Gem.win_platform?)
   end
 end
 
+#*************************начало функции: cypher(encode, str)**********************************************
+
 # 1. Функция шифрования cypher(encode, str), которая в зависимости от параметра шифрования
 # шифрует слово или фразу, введенное в качестве 2-го параметра
 # 2. Параметры: encode - способ шифрования (MD5, SHA1, SHA2); str - слово или фраза
@@ -46,24 +48,30 @@ def cypher(encode, str)
   end
 end
 
+#*************************конец функции***************************************************************
 
+words = ""
 
-puts "Введите слово или фразу для шифрования:"
-puts "Хороший программист"
+# Будем задавать вопрос пока пользователь не слово или фразу
+while words == ""
+  puts "Введите слово или фразу для шифрования:"
+  words = STDIN.gets.chomp
+end
 
 method = 0
 
 # Будем задавать вопрос пока пользователь не введет 1 или 2
-while method < 1 || method > 2
-  puts "\nКаким способом зашифровать:\n1. MD5\n2. SHA1"
+while method < 1 || method > 3
+  puts "\nКаким способом зашифровать:\n1. MD5\n2. SHA1\n3. SHA2"
   method = STDIN.gets.chomp.to_i
 end
 
 encoding = ""
-words = "Хороший программист"
 
 if method == 1
   puts "\nВот что получилось:\n#{cypher(encoding = "md5", words).to_s}"
-else
+elsif method == 2
   puts "\nВот что получилось:\n#{cypher(encoding = "sha1", words).to_s}"
+else
+  puts "\nВот что получилось:\n#{cypher(encoding = "sha2", words).to_s}"
 end
